@@ -1,0 +1,56 @@
+@import '../../../styles/index.scss';
+
+.herobanner {
+    display: flex;
+    align-items: center;
+
+    .container {
+        section {
+            margin: 150px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .heading {
+
+                h1 {
+                    font-size: 40px;
+                    text-align: center;
+                    color: var(--theme-primary-dark-text-color);
+                }
+            }
+
+            .logo {
+                margin-top: 50px;
+                border-radius: 10px;
+                padding: 30px;
+                width: fit-content;
+                background-color: var(--theme-primary-dark-background-color);
+
+                img {
+                    width: 500px;
+                    object-fit: cover;
+                    display: block;
+                }
+            }
+
+            .button {
+                margin-top: 50px;
+
+                button {
+                    font-family: inherit;
+                    cursor: pointer;
+                    font-size: 20px;
+                    letter-spacing: .9px;
+                    padding: 8px 12px;
+                    border: none;
+                    border-radius: 6px;
+                    text-transform: capitalize;
+                    color: var(--theme-white-text-color);
+                    background-color: var(--theme-blue-button-background-color);
+                    box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Record Management</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+            justify-items: center;
+        }
+
+        .flip-card {
+            background-color: #fff;
+            width: 100%;
+            height: 200px;
+            perspective: 1000px;
+            position: relative;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            /* Box shadow added */
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .flip-card-inner {
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.5s ease-in-out;
+            transform-style: preserve-3d;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .flip-card.active .flip-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .flip-card-front,
+        .flip-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: rotateY(0deg);
+        }
+
+        .flip-card-front {
+            background-color: #ccc;
+            color: #000;
+            z-index: 2;
+        }
+
+        .flip-card-back {
+            background-color: #fff;
+            color: #000;
+            transform: rotateY(180deg);
+        }
+
+        .record-actions {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .record-actions button {
+            padding: 8px 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-size: 14px;
+            margin: 0 5px;
+        }
+
+        .record-actions button.active {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .record-actions button.deactive {
+            background-color: #fff;
+            color: #000;
+            border: 1px solid #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container" id="records"></div>
+
+    <script>
+        // Sample array of records
+        let records = [
+            { id: 1, task: "Be grateful for at least three things.", active: true },
+            { id: 2, task: "Make your bed.", active: false },
+            { id: 3, task: "Review your goals list.", active: true },
+            { id: 4, task: "Review your appointments for the day.", active: false },
+            { id: 5, task: "Make a list of three things you want to get done today.", active: true },
+            { id: 6, task: "Give someone a compliment.", active: false },
+            { id: 7, task: "Remove one item from your work space.", active: true },
+            { id: 8, task: "Respond to an email or message.", active: false },
+            { id: 9, task: "Do some deep breathing.", active: true },
+            { id: 10, task: "Have a short break.", active: false }
+        ];
+
+        // Function to display records
+        function displayRecords() {
+            let recordsDiv = document.getElementById("records");
+            recordsDiv.innerHTML = "";
+            records.forEach(record => {
+                let recordDiv = document.createElement("div");
+                recordDiv.classList.add("flip-card");
+                if (record.active) {
+                    recordDiv.classList.add("active");
+                }
+
+                let flipCardInner = document.createElement("div");
+                flipCardInner.classList.add("flip-card-inner");
+
+                let flipCardFront = document.createElement("div");
+                flipCardFront.classList.add("flip-card-front");
+                flipCardFront.textContent = "Click to see Task";
+
+                let flipCardBack = document.createElement("div");
+                flipCardBack.classList.add("flip-card-back");
+                flipCardBack.textContent = record.task;
+
+                flipCardInner.appendChild(flipCardFront);
+                flipCardInner.appendChild(flipCardBack);
+
+                let actionsDiv = document.createElement("div");
+                actionsDiv.classList.add("record-actions");
+
+                let button = document.createElement("button");
+                button.textContent = record.active ? "Deactivate" : "Activate";
+                button.classList.add(record.active ? "active" : "deactive");
+                button.addEventListener("click", () => toggleActive(record, flipCardInner));
+
+                actionsDiv.appendChild(button);
+
+                recordDiv.appendChild(flipCardInner);
+                recordDiv.appendChild(actionsDiv);
+
+                recordsDiv.appendChild(recordDiv);
+            });
+        }
+
+        // Function to toggle active status and update button
+        function toggleActive(record, flipCardInner) {
+            record.active = !record.active;
+            flipCardInner.style.transform = record.active ? "rotateY(180deg)" : "rotateY(0deg)";
+            displayRecords();
+        }
+
+        // Initial display of records
+        displayRecords();
+    </script>
+    
+
+</body>
+
+</html>
