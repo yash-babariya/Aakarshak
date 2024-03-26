@@ -17,6 +17,18 @@
                     font-size: 40px;
                     text-align: center;
                     color: var(--theme-primary-dark-text-color);
+
+                    @media (max-width: 768px) {
+                        font-size: 30px;
+                    }
+
+                    @media (max-width: 480px) {
+                        font-size: 25px;
+                    }
+
+                    @media (max-width: 320px) {
+                        font-size: 20px;
+                    }
                 }
             }
 
@@ -27,8 +39,16 @@
                 width: fit-content;
                 background-color: var(--theme-primary-dark-background-color);
 
+                @media (max-width: 768px) {
+                    padding: 20px;
+                }
+
+                @media (max-width: 480px) {
+                    padding: 10px;
+                }
+
                 img {
-                    width: 500px;
+                    width: 100%;
                     object-fit: cover;
                     display: block;
                 }
