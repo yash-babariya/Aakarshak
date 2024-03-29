@@ -1,6 +1,8 @@
 @import '../../styles/index.scss';
 
 .header {
+    position: sticky;
+    top: 0;
     height: 82px;
     padding: 20px 0;
     background-color: var(--theme-primary-dark-background-color);
