@@ -11,7 +11,7 @@ export default function Herobanner() {
                         <h1>Elevate Your Shopping Experience with Aakrshak</h1>
                     </div>
                     <div className="logo">
-                        <img src={logo} alt="" />
+                        <img src={logo} alt="logo" />
                     </div>
                     <div className="button">
                         <button>explore</button>
